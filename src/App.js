@@ -14,7 +14,10 @@ function App() {
 
   const [mes, setMes] = useState ('');
   const [dia, setDia] = useState ();
-  const [libra, setLibra] = useState ();
+  const [libra, setLibra] = useState (false);
+
+  const [gramas, setGramas] = useState ();
+  const [valor, setValor] = useState (0);
   
 
 
@@ -29,23 +32,48 @@ function App() {
     }
 
     function signo(){
+
+      let resp = false
+
       if(mes == "setembro")
       {
-        if (dia >= 23 || dia <= 30 ) {
-          libra = true 
+        if (dia < 23 || dia > 30) {
+          resp = false
+        }
+
+        else if (dia >= 23 || dia <= 30 ) {
+          resp = true 
         }
       }
+      
       else if(mes == "outubro")
       {
-        if (dia >= 1 || dia <= 22 ) {
-          libra = true 
+        if (dia < 1 || dia > 22) {
+          resp = false
+        }
+        else if (dia >= 1 || dia <= 22 ) {
+          resp = true 
         }
       }
       else{
-        libra = false
+        resp = false
       }
-      console.log(libra)
-      setLibra(true)
+      console.log(resp)
+      setLibra(resp)
+
+    }
+
+
+    function Sorveteria(){
+      let total = 0
+
+      if (gramas >= 1000) {
+        total = gramas * 0.03
+      }
+      else{
+        total = gramas * 0.035
+      }
+      setValor(total.toFixed(2))
 
     }
 
@@ -55,7 +83,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <main className="App">
 
        <div> 
           <h1>açaiaria</h1>
@@ -77,7 +105,7 @@ function App() {
           <h1>{resposta}</h1>
 
         </div>
-      <hr></hr>
+        <hr></hr>
 
         <div>
 
@@ -92,13 +120,28 @@ function App() {
 
           <button onClick={signo}>Testar</button>
 
-        <h1>é de libra? :{libra ? 'Sim' : 'Não'}</h1>
+          <h1>é de libra? :{libra ? 'Sim' : 'Não'}</h1>
+
+        </div>
+
+        <hr></hr>
+
+        <div>
+            <h1>Sorvetin pro Bruno</h1>
+            <h2>Desconto apartir de 1000g/1kg</h2>
+
+            <h3>Quantas gramas você deseja?</h3>
+            <input type= "number" value={gramas} onChange={e => setGramas (Number(e.target.value))} />
+
+            <button onClick={Sorveteria}>Comprar</button>
+
+            <h1>total a pagar é: R${valor}</h1>
 
         </div>
 
 
 
-    </div>
+    </main>
   );
 }
 
