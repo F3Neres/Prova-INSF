@@ -37,6 +37,20 @@ function App() {
   const [temp, setTemp] = useState ();
   const [febre, setFebre] = useState ();
 
+// Ex7
+  const [ganhos, setGanhos] = useState ();
+  const [gastos, setGastos] = useState ();
+  const [situacao, setSitituacao] = useState ();
+  
+// Ex8
+  const [inteiras, setInteiras] = useState ();
+  const [meias, setMeias] = useState ();
+  const [diadasemana, setDiaDaSemana] = useState ("");
+  const [nacional, setNacional] = useState ();
+  const [resul, setResul] = useState ();
+
+
+
   
 
 
@@ -137,8 +151,61 @@ function App() {
       setFebre(resp)
     }
 
+  // Ex7
+    function orcamento(){
+    let calc = gastos / ganhos;
+    let resp = calc * 100;
+    let resul = "";
 
+    if (resp > 100) {
+      resul = "Orçamento comprometido! Hora de rever seus gastos!"
+    }
 
+    else if (resp > 80) {
+      resul = "Cuidado, seu orçamento pode ficar comprometido!"
+    }
+
+    else if (resp > 50) {
+      resul = "Atenção, melhor conter os gastos!"
+    }
+
+    else if (resp > 20) {
+      resul = "Muito bem, seus gastos não utrapassam metade dos ganhos"
+    }
+
+    else if (resp >= 0) {
+      resul = "Parabéns, está gerenciando bem seu orçamento!"
+    }
+
+    else{
+      resul = "valor invalido"
+    }
+
+    setSitituacao(resul)
+  }
+
+  // Ex8
+    function cinema(){
+      let resp = 0;
+
+      if (nacional == true) {
+        resp = ( inteiras + meias ) * 5;
+        
+      }
+
+      else if ( diadasemana == "quarta-feira" ) {
+        resp = ( inteiras + meias ) * 14.25;
+        
+      }
+
+      else {
+        resp = (inteiras * 28.5) + ( meias * 14.25);
+      }
+
+      setResul(resp)
+    } 
+
+   
 
 
   return (
@@ -255,6 +322,50 @@ function App() {
 
             <h2>Voce esta com: {febre}</h2>
         </div>
+
+        <hr></hr>
+        <h1 className='prova'>PROVA 3</h1>
+
+
+       <div> 
+          <h1>Seu orçamento</h1>
+
+          <h2>Quais são seus ganhos?</h2>
+          <input type= "number" value={ganhos} onChange={e => setGanhos (Number(e.target.value))} />
+
+          <h2>Quais são seus gastos?</h2>
+          <input type= "number" value={gastos} onChange={e => setGastos (Number(e.target.value))} />
+
+          <button onClick={orcamento}>Verificar</button>
+
+          <h2>{situacao}</h2>
+
+        </div>
+
+      <hr></hr>
+
+      <div> 
+          <h1>cinema</h1>
+
+          <h2>Quantidades de inteiras </h2>
+          <input type= "number" value={inteiras} onChange={e => setInteiras (Number(e.target.value))} />
+
+          <h2>Quantidade de meias</h2>
+          <input type= "number" value={meias} onChange={e => setMeias (Number(e.target.value))} />
+
+          <h2>Nacional?</h2>
+          <h3>Sim</h3>
+          <input type="checkbox" checked={nacional} onChange={e => setNacional(e.target.checked)} />
+
+          <h2>Qual o dia da semana?</h2>
+          <input type= "text" value={diadasemana} onChange={e => setDiaDaSemana (e.target.value)} />
+
+          <button onClick={cinema}>Verificar</button>
+
+          <h2>{resul}</h2>
+
+        </div>
+
 
 
 
