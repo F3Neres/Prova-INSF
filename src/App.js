@@ -49,6 +49,14 @@ function App() {
   const [nacional, setNacional] = useState ();
   const [resul, setResul] = useState ();
 
+// Ex9
+  const [inicio, setInicio] = useState ();
+  const [fim, setFim] = useState ();
+  const [numero, setNumero] = useState ([]);
+
+// Ex9
+const [linha, setLinha] = useState ();
+const [asterisco, setAsterisco] = useState ();
 
 
   
@@ -205,11 +213,36 @@ function App() {
       setResul(resp)
     } 
 
+  // Ex9
+    function contar(){
+      let resul = []
+      for (let i = inicio; i <= fim; i++) {
+        resul.push(i)
+        
+      }
+      setNumero(resul)
+
+    }
+
+    function linhas(){
+      let resul = []
+      for (let i = 0; i <= linha; i++) {
+        resul.push("*")
+        
+        
+      }
+      setAsterisco(resul)
+
+    }
+
+
    
 
 
   return (
     <main className="App">
+
+      <h1 className='prova'>PROVA 1</h1>
 
        <div> 
           <h1>açaiaria</h1>
@@ -363,6 +396,25 @@ function App() {
           <button onClick={cinema}>Verificar</button>
 
           <h2>{resul}</h2>
+
+        </div>
+
+        <hr></hr>
+        <h1 className='prova'>PROVA 4</h1>
+
+
+       <div> 
+          <h1>Contador</h1>
+
+          <h2>inicio</h2>
+          <input type= "number" value={inicio} onChange={e => setInicio (Number(e.target.value))} />
+
+          <h2>Fim</h2>
+          <input type= "number" value={fim} onChange={e => setFim (Number(e.target.value))} />
+
+          <button onClick={contar}>Verificar</button>
+
+          <h2>{numero}</h2>
 
         </div>
 
