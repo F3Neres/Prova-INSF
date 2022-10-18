@@ -223,13 +223,13 @@ const [asterisco, setAsterisco] = useState ();
       setNumero(resul)
 
     }
-
+  // Ex9
     function linhas(){
       let resul = []
       for (let i = 0; i <= linha; i++) {
         resul.push("*")
         
-        
+
       }
       setAsterisco(resul)
 
@@ -415,6 +415,18 @@ const [asterisco, setAsterisco] = useState ();
           <button onClick={contar}>Verificar</button>
 
           <h2>{numero}</h2>
+
+        </div>
+
+        <div> 
+          <h1>linha</h1>
+
+          <h2>Tamanho</h2>
+          <input type= "number" value={linha} onChange={e => setLinha (Number(e.target.value))} />
+
+          <button onClick={linhas}>Verificar</button>
+
+          <h2>{asterisco}</h2>
 
         </div>
 
