@@ -5,117 +5,83 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-// Ex1
-  const [qtdGrande, setQtdGrande] = useState (0);
-  const [qtdMedio, setQtdMedio] = useState (0);
-  const [qtdPqno, setQtdPqno] = useState (0);
-  const [cumpom, setCumpom] = useState (0);
-  const [resposta, setResposta] = useState (0);
+  // Ex1
+    const [qtdGrande, setQtdGrande] = useState (0);
+    const [qtdMedio, setQtdMedio] = useState (0);
+    const [qtdPqno, setQtdPqno] = useState (0);
+    const [cumpom, setCumpom] = useState (0);
+    const [resposta, setResposta] = useState (0);
 
-// Ex2
-  const [mes, setMes] = useState ('');
-  const [dia, setDia] = useState (1);
-  const [libra, setLibra] = useState (false);
+  // Ex1
+      function calcular(){
+        let qtd = (qtdPqno * 13.50) + (qtdMedio * 15) + (qtdGrande * 17.50);
+        let desconto = (cumpom  / 100) * qtd ;
+        let total = qtd - desconto;
 
-// Ex3
-  const [gramas, setGramas] = useState ();
-  const [valor, setValor] = useState ();
-
-// Ex4
-  const [salario, setSalario] = useState ();
-  const [bonus, setBonus] = useState ();
-  const [desc, setDesc] = useState ();
-  const [sLiquido, setSLiquido] = useState ();
-
-// Ex5
-  const [tanque, setTanque] = useState ();
-  const [dist, setDist] = useState ();
-  const [consumo, setConsumo] = useState ();
-  const [viagem, setViagem] = useState ();
-
-// Ex6
-  const [temp, setTemp] = useState ();
-  const [febre, setFebre] = useState ();
-
-// Ex7
-  const [ganhos, setGanhos] = useState ();
-  const [gastos, setGastos] = useState ();
-  const [situacao, setSitituacao] = useState ();
-  
-// Ex8
-  const [inteiras, setInteiras] = useState ();
-  const [meias, setMeias] = useState ();
-  const [diadasemana, setDiaDaSemana] = useState ("");
-  const [nacional, setNacional] = useState ();
-  const [resul, setResul] = useState ();
-
-// Ex9
-  const [inicio, setInicio] = useState ();
-  const [fim, setFim] = useState ();
-  const [numero, setNumero] = useState ([]);
-
-// Ex9
-const [linha, setLinha] = useState ();
-const [asterisco, setAsterisco] = useState ();
+        setResposta(total)
+      }
 
 
-  
+  // Ex2
+    const [mes, setMes] = useState ('');
+    const [dia, setDia] = useState (1);
+    const [libra, setLibra] = useState (false);
 
+  // Ex2
+      function signo(){
 
+        let resp = false
 
-// Ex1
-    function calcular(){
-      let qtd = (qtdPqno * 13.50) + (qtdMedio * 15) + (qtdGrande * 17.50);
-      let desconto = (cumpom  / 100) * qtd ;
-      let total = qtd - desconto;
+        if(mes == "setembro")
+        {
+          if (dia < 23 || dia > 30) {
+            resp = false
+          }
 
-      setResposta(total)
-    }
-// Ex2
-    function signo(){
-
-      let resp = false
-
-      if(mes == "setembro")
-      {
-        if (dia < 23 || dia > 30) {
+          else if (dia >= 23 || dia <= 30 ) {
+            resp = true 
+          }
+        }
+        
+        else if(mes == "outubro")
+        {
+          if (dia < 1 || dia > 22) {
+            resp = false
+          }
+          else if (dia >= 1 || dia <= 22 ) {
+            resp = true 
+          }
+        }
+        else{
           resp = false
         }
+        setLibra(resp)
 
-        else if (dia >= 23 || dia <= 30 ) {
-          resp = true 
+      }
+
+  // Ex3
+    const [gramas, setGramas] = useState ();
+    const [valor, setValor] = useState ();
+
+  // Ex3
+      function Sorveteria(){
+        let total = 0
+
+        if (gramas >= 1000) {
+          total = gramas * 0.03
         }
-      }
-      
-      else if(mes == "outubro")
-      {
-        if (dia < 1 || dia > 22) {
-          resp = false
+        else{
+          total = gramas * 0.035
         }
-        else if (dia >= 1 || dia <= 22 ) {
-          resp = true 
-        }
-      }
-      else{
-        resp = false
-      }
-      setLibra(resp)
+        setValor(total.toFixed(2))
 
-    }
-
-// Ex3
-    function Sorveteria(){
-      let total = 0
-
-      if (gramas >= 1000) {
-        total = gramas * 0.03
       }
-      else{
-        total = gramas * 0.035
-      }
-      setValor(total.toFixed(2))
 
-    }
+  // Ex4
+    const [salario, setSalario] = useState ();
+    const [bonus, setBonus] = useState ();
+    const [desc, setDesc] = useState ();
+    const [sLiquido, setSLiquido] = useState ();
 
   // Ex4
     function Salario(){
@@ -125,12 +91,22 @@ const [asterisco, setAsterisco] = useState ();
     }
 
   // Ex5
+    const [tanque, setTanque] = useState ();
+    const [dist, setDist] = useState ();
+    const [consumo, setConsumo] = useState ();
+    const [viagem, setViagem] = useState ();
+
+  // Ex5
     function Carro(){
       let kmLitro = consumo / dist
       let resp = kmLitro / tanque
       
       setViagem(Math.ceil(resp))
     }
+
+  // Ex6
+    const [temp, setTemp] = useState ();
+    const [febre, setFebre] = useState ();
     
   // Ex6
     function calcFebre(){
@@ -158,6 +134,11 @@ const [asterisco, setAsterisco] = useState ();
 
       setFebre(resp)
     }
+
+  // Ex7
+    const [ganhos, setGanhos] = useState ();
+    const [gastos, setGastos] = useState ();
+    const [situacao, setSitituacao] = useState ();
 
   // Ex7
     function orcamento(){
@@ -193,6 +174,13 @@ const [asterisco, setAsterisco] = useState ();
   }
 
   // Ex8
+    const [inteiras, setInteiras] = useState ();
+    const [meias, setMeias] = useState ();
+    const [diadasemana, setDiaDaSemana] = useState ("");
+    const [nacional, setNacional] = useState ();
+    const [resul, setResul] = useState ();
+
+  // Ex8
     function cinema(){
       let resp = 0;
 
@@ -214,6 +202,11 @@ const [asterisco, setAsterisco] = useState ();
     } 
 
   // Ex9
+    const [inicio, setInicio] = useState ();
+    const [fim, setFim] = useState ();
+    const [numero, setNumero] = useState ([]);
+
+  // Ex9
     function contar(){
       let resul = []
       for (let i = inicio; i <= fim; i++) {
@@ -223,20 +216,58 @@ const [asterisco, setAsterisco] = useState ();
       setNumero(resul)
 
     }
+
   // Ex9
+    const [linha, setLinha] = useState ();
+    const [asterisco, setAsterisco] = useState ();
+  // Ex10
     function linhas(){
       let resul = []
-      for (let i = 0; i <= linha; i++) {
-        resul.push("*")
+      for (let i = 1; i <= linha; i++) {
+        resul = resul + "* "
         
 
       }
       setAsterisco(resul)
+    }
+
+  //Ex11
+    const [large, setLarge] = useState ();
+    const [alt, setAlt] = useState ();
+    const [retangulo, setRetangulo] = useState ()
+
+  //Ex11 falta arrumar
+    function retangulos (){ 
+      let resul = ''
+      let linhas = 0
+      for (let i = 0; i < large; i++) {
+        resul+='* '   
+        if (i === large - 1 && linhas < alt) {
+            resul+='\r\n'
+            linhas++
+            if (linhas !== alt) {
+              i = -1
+            }
+        }
+      }
+      setRetangulo(resul)
+
 
     }
 
+  //Ex12
+    const [alunos, setAlunos] = useState ();
+    const [litro, setLitro] = useState ();
+    const [mili, setMili] = useState ();
+    const [conCafe, setConCafe] = useState ()
 
-   
+  //Ex12
+    function cafe(){
+      let x = alunos * mili
+      let y = litro * 1000 >= x ? 1 : Math.ceil(x / (litro * 1000))
+      let resul = litro * y
+      setConCafe(resul) 
+    }   
 
 
   return (
@@ -418,6 +449,8 @@ const [asterisco, setAsterisco] = useState ();
 
         </div>
 
+        <hr></hr>
+
         <div> 
           <h1>linha</h1>
 
@@ -429,6 +462,45 @@ const [asterisco, setAsterisco] = useState ();
           <h2>{asterisco}</h2>
 
         </div>
+
+         <hr></hr>
+
+        <div> 
+          <h1>retangulo</h1>
+
+          <h2>Tamanho</h2>
+          <input type= "number" value={large} onChange={e => setLarge (Number(e.target.value))} />
+
+          <h2>Tamanho</h2>
+          <input type= "number" value={alt} onChange={e => setAlt (Number(e.target.value))} />
+
+
+          <button onClick={retangulos}>Verificar</button>
+
+          <h2>{retangulo}</h2>
+
+        </div>
+
+        <hr></hr>
+
+        <div> 
+          <h1>cafe</h1>
+
+          <h2>Numero de alunos</h2>
+          <input type= "number" value={alunos} onChange={e => setAlunos (Number(e.target.value))} />
+
+          <h2>Quantidade de litros</h2>
+          <input type= "number" value={litro} onChange={e => setLitro (Number(e.target.value))} />
+
+          <h2>Quantidade de ML</h2>
+          <input type= "number" value={mili} onChange={e => setMili (Number(e.target.value))} />
+
+          <button onClick={cafe}>Calcular</button>
+
+          <h2>{conCafe}</h2>
+
+        </div>
+
 
 
 
