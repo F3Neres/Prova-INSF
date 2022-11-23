@@ -235,7 +235,6 @@ function App() {
     const [large, setLarge] = useState ();
     const [alt, setAlt] = useState ();
     const [retangulo, setRetangulo] = useState ()
-
   //Ex11 falta arrumar
     function retangulos (){ 
       let resul = ''
@@ -252,7 +251,6 @@ function App() {
       }
       setRetangulo(resul)
 
-
     }
 
   //Ex12
@@ -260,7 +258,6 @@ function App() {
     const [litro, setLitro] = useState ();
     const [mili, setMili] = useState ();
     const [conCafe, setConCafe] = useState ()
-
   //Ex12
     function cafe(){
       let x = alunos * mili
